@@ -6,8 +6,9 @@ const { PORT = 3000 } = process.env;
 const app = express();
 
 const TelegramBot = require('node-telegram-bot-api'); // подключаем node-telegram-bot-api
-const {gameOptions, againOptions} = require('./options');
+const {gameOptions, againOptions, resumeOptions, projectOptions, mainOptions} = require('./options');
 const token = '5074302213:AAEcVwNuW7s2xCsMy9f5wOAN_ZuVz0frlcU'; // тут токен кторый мы получили от botFather
+const reportsChannel = -1001755597137;
 
 // включаем самого обота
 const bot = new TelegramBot(token, {polling: true});
@@ -19,60 +20,128 @@ app.get('/', (req, res) => {
 
 const chats = {};
 
+const callback = (msg) => {
+    const data =  msg.data;
+    const chatId = msg.message.chat.id;
+    bot.sendMessage(chatId, data == chats[chatId] ? `Поздравляю, ты отгадал цифру ${chats[chatId]}!!!` : `Сожалею, но бот загадал другую цифру ${chats[chatId]}`, againOptions);
+}
 
 const startGame = async (chatId) => {
     await bot.sendMessage(chatId, 'Сейчас я загадаю цифру от 0 до 10, твоя задача её угадать!');
     const randomNumber = Math.floor(Math.random() * 10);
     chats[chatId] = randomNumber;
     await bot.sendMessage(chatId, 'Я загадал, отгадывай!', gameOptions);
+    bot.once('callback_query', callback);
 }
 
-const start = () => {
+const sendFeedback = async (chatId) => {
+    bot.sendMessage(chatId, `Нашёл баг? Поругать, похвалить проекты, просто дать фидбэк - всё принимается! Это анонимно!`);
+    bot.sendMessage(chatId, `Слушаю тебя!`);
+    bot.onText(/[a-zA-Zа-яА-Я0-9]+/, async msg => {
+        const text = msg.text;
+        const chatId = msg.chat.id; 
+        // await bot.sendSticker(chatId, 'https://cdn.tlgrm.app/stickers/ac5/a4c/ac5a4c6a-d024-315e-8a8b-3c99843d3eef/192/8.webp')
+        await bot.sendMessage(reportsChannel, text);
+        // return bot.sendMessage(chatId, 'Я тебя не понимаю, давай попробуем еще раз  (´･ᴗ･ )');
+        bot.sendMessage(chatId, `Сообщение отправлено!`);
+    })
+}
 
+const projectsMenu = async (chatId) => {
+    await bot.sendSticker(chatId, 'https://chpic.su/_data/stickers/k/Katzz/Katzz_009.webp', projectOptions)
+    // return bot.sendMessage(chatId, "Моё портфолио", projectOptions );
+    // bot.sendMessage()
+}
+
+const startAnswer = async (chatId) => {
+    await bot.sendSticker(chatId, 'https://cdn.tlgrm.app/stickers/ac5/a4c/ac5a4c6a-d024-315e-8a8b-3c99843d3eef/192/8.webp');  
+    return bot.sendMessage(chatId, 'Добро пожаловать в телеграм бот веб-разработчика Антона Вайцеховского', mainOptions);
+}
+
+const toBegining = async (chatId) => {
+    return bot.sendSticker(chatId, 'https://chpic.su/_data/stickers/k/Katzz/Katzz_001.webp', mainOptions);
+}
+
+const resumeInPdf = async (chatId) => {
+    return bot.sendDocument(chatId, './Vaitsekhovskiy_A.pdf')
+}
+
+const resumeAnswer = async (chatId) => {
+    await bot.sendSticker(chatId, 'https://chpic.su/_data/stickers/k/Katzz/Katzz_021.webp', resumeOptions)
+}
+
+
+
+
+
+const start = () => {
     bot.setMyCommands([
         {command: '/start', description: 'Приветствие'},
         {command: '/resume', description: 'Резюме'},
+        {command: '/projects', description: 'Проекты'},
         {command: '/feedback', description: 'Обратная связь'},
         {command: '/about', description: 'Обо мне'},
         {command: '/game', description: 'Игра, угадай цифру'},
     ])
     
-    
+    // конструкцию try catch сюда - 31 минута
     
     bot.onText(/[a-zA-Zа-яА-Я0-9]+/, async msg => {
         const text = msg.text;
-        const chatId = msg.chat.id;
+        const chatId = msg.chat.id; 
         if (text === '/start') {
-            await bot.sendSticker(chatId, 'https://cdn.tlgrm.app/stickers/ac5/a4c/ac5a4c6a-d024-315e-8a8b-3c99843d3eef/192/8.webp')
-            return bot.sendMessage(chatId, 'Добро пожаловать в телеграм бот веб-разработчика Антона Вайцеховского');
-        }
+            return startAnswer(chatId);
+        } 
         if (text === '/game') {
             return startGame(chatId);
         }
-        return bot.sendMessage(chatId, 'Я тебя не понимаю, давай попробуем еще раз  (´･ᴗ･ )');
+        if (text === '/feedback') {
+            return sendFeedback(chatId);
+        }
+        if (text === '/projects') {
+            return projectsMenu(chatId);
+        }
+        if (text === '/resume') {
+            return resumeAnswer(chatId);
+        }
+
+        if (text === '/about') {
+
+        }
+        // return bot.sendMessage(chatId, 'Я тебя не понимаю, давай попробуем еще раз  (´･ᴗ･ )');
     })
 }
 
 bot.on('callback_query', msg => {
     const data =  msg.data;
     const chatId = msg.message.chat.id;
-    const number = chats[chatId].toString();
 
-    if (data === '/again') {
-        return startGame(chatId);
+
+    if (data === 'start') {
+        toBegining(chatId);
     }
-    if (data === number) {
-        return bot.sendMessage(chatId, `Поздравляю, ты отгадал цифру ${number}!!!`, againOptions)
-    } else {
-        return bot.sendMessage(chatId, `Сожалею, но бот загадал другую цифру ${number}`, againOptions)
+    if (data === 'feedback') {
+        sendFeedback(chatId);
     }
-    bot.sendMessage(chatId, `Ты выбрал цифру ${data}`)
-    console.log(msg);
+
+    if ((data === 'again') || (data === '/game')) {
+        startGame(chatId);
+        bot.removeListener('callback_query', callback);
+    }
+    if (data === 'projects') {
+        return projectsMenu(chatId);
+    }
+    if (data === 'resume') {
+        return resumeAnswer(chatId);
+    }
+    if (data === 'resumeInPdf') {
+        resumeInPdf(chatId);
+        return startAnswer(chatId);        
+    }
 })
 
 start();
 
 app.listen(PORT, () => {
-    // Если всё работает, консоль покажет, какой порт приложение слушает
     console.log(`App listening on port ${PORT}`)
 }) 
