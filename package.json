@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/Vaitsehovskiy-Tony/feedback-tg-bot#readme",
   "dependencies": {
+    "dotenv": "^14.1.0",
     "express": "^4.17.2",
     "node-telegram-bot-api": "0.56.0"
   },

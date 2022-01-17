@@ -1,24 +1,32 @@
 const express = require('express');
-const req = require('express/lib/request');
-// Слушаем 3000 порт
-const { PORT = 3000 } = process.env;
-
+require('dotenv').config();
 const app = express();
 
-const TelegramBot = require('node-telegram-bot-api'); // подключаем node-telegram-bot-api
-const {gameOptions, againOptions, resumeOptions, projectOptions, mainOptions, toStartOptions, aboutOptions} = require('./options');
-const token = '5074302213:AAEcVwNuW7s2xCsMy9f5wOAN_ZuVz0frlcU'; // тут токен кторый мы получили от botFather
+const TelegramBot = require('node-telegram-bot-api');
+
+const token = process.env.TOKEN;
 const reportsChannel = -1001755597137;
-const {newsExplorerText, mestoText, mestoReactText, travellingText, feinmanText, aboutText, tgBotText} = require('./texts');
+const {
+    newsExplorerText,
+    mestoText,
+    mestoReactText,
+    travellingText,
+    feinmanText,
+    aboutText,
+    tgBotText
+} = require('./texts');
 
-// включаем самого обота
+const {
+    gameOptions, 
+    againOptions, 
+    resumeOptions, 
+    projectOptions, 
+    mainOptions, 
+    toStartOptions, 
+    aboutOptions
+} = require('./options');
+
 const bot = new TelegramBot(token, {polling: true});
-
-
-app.get('/', (req, res) => {
-    res.status(404).send('<h1>Страница не найдена</h1>');
-}); 
-
 const chats = {};
 
 const callback = (msg) => {
@@ -50,8 +58,6 @@ const sendFeedback = async (chatId) => {
 
 const projectsMenu = async (chatId) => {
     await bot.sendSticker(chatId, 'https://chpic.su/_data/stickers/k/Katzz/Katzz_009.webp', projectOptions)
-    // return bot.sendMessage(chatId, "Моё портфолио", projectOptions );
-    // bot.sendMessage()
 }
 
 const startAnswer = async (chatId) => {
@@ -111,9 +117,7 @@ const start = () => {
         {command: '/about', description: 'Обо мне'},
         {command: '/game', description: 'Игра угадай цифру'},
     ])
-    
-    // конструкцию try catch сюда - 31 минута
-    
+        
     bot.onText(/[a-zA-Z0-9]+/, async msg => {
         const text = msg.text;
         const chatId = msg.chat.id; 
@@ -135,7 +139,6 @@ const start = () => {
         if (text === '/about') {
             return aboutFunction(chatId);
         }
-        // return bot.sendMessage(chatId, 'Я тебя не понимаю, давай попробуем еще раз  (´･ᴗ･ )');
     })
 }
 
@@ -190,6 +193,6 @@ bot.on('callback_query', msg => {
 
 start();
 
-app.listen(PORT, () => {
-    console.log(`App listening on port ${PORT}`)
+app.listen(process.env.PORT, () => {
+    console.log(`App listening on port ${process.env.PORT}`)
 }) 
