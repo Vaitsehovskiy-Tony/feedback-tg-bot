@@ -1,10 +1,11 @@
 const express = require('express');
 require('dotenv').config();
 const app = express();
+const config = require('./config');
 
 const TelegramBot = require('node-telegram-bot-api');
 
-const token = process.env.TOKEN;
+const token = config.TOKEN;
 const reportsChannel = -1001755597137;
 const {
     newsExplorerText,
@@ -193,6 +194,6 @@ bot.on('callback_query', msg => {
 
 start();
 
-app.listen(process.env.PORT, () => {
-    console.log(`App listening on port ${process.env.PORT}`)
+app.listen(config.PORT, () => {
+    console.log(`App listening on port ${config.PORT}`)
 }) 
