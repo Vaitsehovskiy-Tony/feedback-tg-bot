@@ -30,9 +30,9 @@ module.exports = {
     projectOptions: {
         reply_markup: JSON.stringify({
             inline_keyboard: [
-                [{text: 'News Explorer', callback_data: 'newsExplorer'}, {text: 'Mesto', callback_data: 'mesto'}],
-                [{text: 'Mesto React', callback_data: 'mestoReact'}, {text: 'Traveling', callback_data: 'traveling'}],
-                [{text: 'Feinman', callback_data: 'feinman'}, {text: 'Feedback TG Bot', callback_data: 'tgBot'}],
+                [{text: 'News Explorer 🔍', callback_data: 'newsExplorer'}, {text: 'Mesto ✈️', callback_data: 'mesto'}],
+                [{text: 'Mesto React 🛸', callback_data: 'mestoReact'}, {text: 'Traveling 🗿', callback_data: 'traveling'}],
+                [{text: 'Feinman 🤓', callback_data: 'feinman'}, {text: 'Feedback Bot 🧚🏽‍♀️', callback_data: 'tgBot'}],
                 [{text: 'В начало 🤔', callback_data: 'start'}]
             ]
         })
@@ -40,8 +40,8 @@ module.exports = {
    mainOptions: {
         reply_markup: JSON.stringify({
             inline_keyboard: [
-                [{text: 'Игра', callback_data: 'game'}, {text: 'Проекты', callback_data: 'projects'}],
-                [{text: 'Резюме 🥸', callback_data: 'resume'}, {text: 'Обратная связь', callback_data: 'feedback'}],
+                [{text: 'Игра 🎮', callback_data: 'game'}, {text: 'Проекты 🎇', callback_data: 'projects'}],
+                [{text: 'Резюме 🥸', callback_data: 'resume'}, {text: 'Обратная связь ✉️', callback_data: 'feedback'}],
                 [{text: 'Обо мне 😇', callback_data: 'about'}],
             ]
         })

@@ -45,6 +45,7 @@ const startGame = async (chatId) => {
 }
 
 const sendFeedback = async (chatId) => {
+    await bot.sendSticker(chatId, 'https://tlgrm.ru/_/stickers/940/db2/940db267-de3d-37ec-a2f7-4b832394eb3f/192/81.webp');
     bot.sendMessage(chatId, `Нашёл баг? Поругать, похвалить проекты, просто дать фидбэк - всё принимается! Это анонимно!`);
     bot.sendMessage(chatId, `Слушаю тебя!`);
     bot.onText(/[a-zA-Zа-яА-Я0-9]+/, async msg => {
@@ -67,7 +68,7 @@ const startAnswer = async (chatId) => {
 }
 
 const toBegining = async (chatId) => {
-    return bot.sendSticker(chatId, 'https://chpic.su/_data/stickers/k/Katzz/Katzz_001.webp', mainOptions);
+    return bot.sendSticker(chatId, 'https://cdn.tlgrm.app/stickers/13c/813/13c813f0-f77e-3963-89cf-4252ec0d2d9e/192/10.webp', mainOptions);
 }
 
 const resumeInPdf = async (chatId) => {
