@@ -18,21 +18,15 @@ module.exports = {
         })
     },    
     
-    resumeOptions: {
-        reply_markup: JSON.stringify({
-            inline_keyboard: [
-                [{text: 'Ссылка на hh', callback_data: 'resumeFromHH'}],
-                [{text: 'Скачать в pdf', callback_data: 'resumePDF'}],
-                [{text: 'В начало 🤔', callback_data: 'start'}],
-            ]
-        })
-    }, 
     projectOptions: {
         reply_markup: JSON.stringify({
             inline_keyboard: [
-                [{text: 'News Explorer 🔍', callback_data: 'newsExplorer'}, {text: 'Mesto ✈️', callback_data: 'mesto'}],
-                [{text: 'Mesto React 🛸', callback_data: 'mestoReact'}, {text: 'Traveling 🗿', callback_data: 'traveling'}],
-                [{text: 'Feinman 🤓', callback_data: 'feinman'}, {text: 'Feedback Bot 🧚🏽‍♀️', callback_data: 'tgBot'}],
+                [{text: 'News Explorer 🔍', callback_data: 'newsExplorer'}],
+                [{text: 'Mesto ✈️', callback_data: 'mesto'}],
+                [{text: 'Mesto React 🛸', callback_data: 'mestoReact'}],
+                [{text: 'Traveling 🗿', callback_data: 'traveling'}],
+                [{text: 'Feinman 🤓', callback_data: 'feinman'}],
+                [{text: 'Feedback Bot 🧚🏽‍♀️', callback_data: 'tgBot'}],
                 [{text: 'В начало 🤔', callback_data: 'start'}]
             ]
         })
@@ -49,7 +43,7 @@ module.exports = {
     resumeOptions: {
         reply_markup: JSON.stringify({
             inline_keyboard: [
-                [{text: 'Резюме в pdf', callback_data: 'resumeInPdf'}, {text: 'Резюме на hh', callback_data: 'resumeInHH', url:'https://spb.hh.ru/resume/95f4bf6eff07eaa1400039ed1f58456c384942'}],
+                [{text: 'На hh', callback_data: 'resumeInHH', url:'https://spb.hh.ru/resume/95f4bf6eff07eaa1400039ed1f58456c384942'}, {text: 'Скачать', callback_data: 'resumeInPdf'}],
                 [{text: 'В начало 🤔', callback_data: 'start'}],
             ]
         })
