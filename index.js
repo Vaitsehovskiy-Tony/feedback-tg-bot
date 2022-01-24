@@ -40,6 +40,7 @@ const startGame = async (chatId) => {
     await bot.sendMessage(chatId, 'Сейчас я загадаю цифру от 0 до 10, твоя задача её угадать!');
     const randomNumber = Math.floor(Math.random() * 10);
     chats[chatId] = randomNumber;
+    await bot.sendSticker(chatId, 'https://cdn.tlgrm.app/stickers/988/e5f/988e5f52-7165-3b74-b531-45389de62989/192/2.webp');
     await bot.sendMessage(chatId, 'Я загадал, отгадывай!', gameOptions);
     bot.once('callback_query', callback);
 }
@@ -68,7 +69,7 @@ const startAnswer = async (chatId) => {
 }
 
 const toBegining = async (chatId) => {
-    return bot.sendSticker(chatId, 'https://cdn.tlgrm.app/stickers/13c/813/13c813f0-f77e-3963-89cf-4252ec0d2d9e/192/10.webp', mainOptions);
+    return bot.sendSticker(chatId, 'https://tlgrm.ru/_/stickers/988/e5f/988e5f52-7165-3b74-b531-45389de62989/192/22.webp', mainOptions);
 }
 
 const resumeInPdf = async (chatId) => {
