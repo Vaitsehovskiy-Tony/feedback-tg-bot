@@ -57,7 +57,7 @@ module.exports = {
         reply_markup: JSON.stringify({
             inline_keyboard: [
                 [{text: 'GitHub', callback_data: 'github', url:'https://github.com/Vaitsehovskiy-Tony'}, {text: 'LinkedIn', callback_data: 'linkedin', url:'https://www.linkedin.com/in/tonyvaits/'}],
-                [{text: 'Vk', callback_data: 'vk', url:'https://vk.com/tonyvaits'}, {text: 'Codewars', callback_data: 'email', url:'https://www.codewars.com/users/Антон%20Вайцеховский'}]
+                [{text: 'fb', callback_data: 'vk', url:'https://www.facebook.com/tony.vaits'}, {text: 'Codewars', callback_data: 'email', url:'https://www.codewars.com/users/Антон%20Вайцеховский'}]
             ]
         })
     },
