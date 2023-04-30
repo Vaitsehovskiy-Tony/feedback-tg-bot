@@ -1,5 +1,5 @@
 module.exports = {
-    blackWallText: `My last project, my business card ;-)
+    blackWallText: `My last project, my business card. I was the main and only developer of this site from scratch. I coordinated a team of designer, QA, and customers. Deployed to production and did SEO optimization.;-)
     Development of an application with an admin panel from 0 to 100%.
     Implementation of various features using React, including carousels, comparison sliders, and collapsing fields.
     Achieving a website performance score of 90 on Lighthouse.
