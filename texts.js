@@ -1,19 +1,30 @@
 module.exports = {
-    newsExplorerText: `О, это мой любимый проект! Написанное на чисто JS, содержит 2 api для взаимодействия с сервером новостей и с моим сервером на ноде. Код отлично документирован, классы не передаются друг в друга! Инициализация только в index или articles, передача методов в классы только в качестве коллбэков. В общем, могу много о нем говорить)) Проект классный, еще много что улучшать и добавлять. Попробуй сам поискать новости! https://newsexplorer.nomoredomains.club/ 
-    Бэкенд тут:
+    blackWallText: `My last project, my business card ;-)
+    Development of an application with an admin panel from 0 to 100%.
+    Implementation of various features using React, including carousels, comparison sliders, and collapsing fields.
+    Achieving a website performance score of 90 on Lighthouse.
+    Creation of an admin panel on a subdomain using Strapi.
+    Deployment of the application using Docker and customization of Nginx.
+    Taking on the roles of project manager, tester, and developer simultaneously.
+
+    The code is here: https://github.com/Vaitsehovskiy-Tony/black-wall`,
+    devhouseText: `amazing guys, super-professionals. They pumped up my industrial development skills and reminded me how cool it is to be in high tech =D
+    What I was doing there:
+    CMS development for Norwegian marketplaces - SaaS    product type.
+    Our team launched more than 50 different landing pages.
+    Working in the React - Vue - Server-Side stack.
+    Write a high quality, testable and reusable code.
+    Communication with designers, PM and developers.
+    Take responsibility for testing and deployment to production.
+
+    Their website: https://www.devhouse.pro/`,
+    newsExplorerText: `Oh, this is my favorite tutorial project! Written in pure JS, it contains 2 api to interact with the news server and with my server on the node. The code is perfectly documented, no classes are passed to each other! Initialization only in index or articles, passing methods to classes only as callbacks. All in all, I could talk a lot about it)) The project is cool, there's still a lot to improve and add. Try searching for the news yourself! https://tonyvaits.ru/ 
+
+    The backend can be found here:
     https://github.com/Vaitsehovskiy-Tony/news-explorer-api 
-    А код тут:
+    And the frontend is here:
     https://github.com/Vaitsehovskiy-Tony/news-explorer-frontend`,
-    mestoText: `Сервис Mesto – HTML, CSS, JS, Webpack, BEM.
-    Возможность загружать свои фотографии, удалять их, редактировать данные пользователя. 
-    Код тут: https://github.com/Vaitsehovskiy-Tony/mesto-2`,
-    mestoReactText: `Тоже самое место, только на React (в процессе разработки) 
-    Код тут: https://github.com/Vaitsehovskiy-Tony/mesto-react`,
-    travellingText: `• Адаптивный лэндинг Travelling through Russia - HTML, CSS, BEM.
-    Код тут: https://github.com/Vaitsehovskiy-Tony/travelling`,
-    feinmanText: `Лэндинг Feynman - HTML, CSS(flexbox & grid & animation) 
-    Код тут: https://github.com/Vaitsehovskiy-Tony/feinman`,
-    tgBotText: `Выдача моего портфолио, инфо обо мне, резюме. Также реализована анонимная пересылка обратной связи на мой личный канал. Создана небольшая игра угадай число. 
-    Код тут: https://github.com/Vaitsehovskiy-Tony/feedback-tg-bot`,
-    aboutText: `Начал писать этого бота с нуля, чтобы получать фидбэк на приложение. Но в итоге увлёкся и пару за пару дней накатал вот это вот всё :-) Еще надо бы прикрутить базу данных, чтобы вести счёт побед, а также сделать игру орёл или решка ;-)`,
+    tgBotText: `Release of my portfolio, info about me, resume. Also implemented anonymous sending feedback to my personal channel. Created a small game of guess the number. 
+    The code is here: https://github.com/Vaitsehovskiy-Tony/feedback-tg-bot`,
+    aboutText: `I started writing this bot from scratch to get feedback on the app. But in the end I got carried away and in a couple of days I wrote all of this :-) In the end, it's more original than making a website :-D I should probably add a database to keep the score, and make the game heads or tails ;-)`,
 }

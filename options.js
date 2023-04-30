@@ -13,7 +13,7 @@ module.exports = {
     againOptions: {
         reply_markup: JSON.stringify({
             inline_keyboard: [
-                [{text: 'Играть еще раз ☺️', callback_data: 'again'}]
+                [{text: 'Play again ☺️', callback_data: 'again'}]
             ]
         })
     },    
@@ -21,37 +21,35 @@ module.exports = {
     projectOptions: {
         reply_markup: JSON.stringify({
             inline_keyboard: [
+                [{text: 'Black Wall ⬛️', callback_data: 'blackWall'}],
+                [{text: 'DevHouse 🏠', callback_data: 'devhouse'}],
                 [{text: 'News Explorer 🔍', callback_data: 'newsExplorer'}],
-                [{text: 'Mesto ✈️', callback_data: 'mesto'}],
-                [{text: 'Mesto React 🛸', callback_data: 'mestoReact'}],
-                [{text: 'Traveling 🗿', callback_data: 'traveling'}],
-                [{text: 'Feinman 🤓', callback_data: 'feinman'}],
                 [{text: 'Feedback Bot 🧚🏽‍♀️', callback_data: 'tgBot'}],
-                [{text: 'В начало 🤔', callback_data: 'start'}]
+                [{text: 'Back to top 🤔', callback_data: 'start'}]
             ]
         })
     },
    mainOptions: {
         reply_markup: JSON.stringify({
             inline_keyboard: [
-                [{text: 'Игра 🎮', callback_data: 'game'}, {text: 'Проекты 🎇', callback_data: 'projects'}],
-                [{text: 'Резюме 🥸', callback_data: 'resume'}, {text: 'Обратная связь ✉️', callback_data: 'feedback'}],
-                [{text: 'Обо мне 😇', callback_data: 'about'}],
+                [{text: 'Game 🎮', callback_data: 'game'}, {text: 'Projects 🎇', callback_data: 'projects'}],
+                [{text: 'CV 🥸', callback_data: 'resume'}, {text: 'Feedback ✉️', callback_data: 'feedback'}],
+                [{text: 'About 😇', callback_data: 'about'}],
             ]
         })
     },
     resumeOptions: {
         reply_markup: JSON.stringify({
             inline_keyboard: [
-                [{text: 'На hh', callback_data: 'resumeInHH', url:'https://spb.hh.ru/resume/95f4bf6eff07eaa1400039ed1f58456c384942'}, {text: 'Скачать', callback_data: 'resumeInPdf'}],
-                [{text: 'В начало 🤔', callback_data: 'start'}],
+                [{text: 'LinkedIn', callback_data: 'resumeInHH', url:'https://www.linkedin.com/in/tonyvaits/'}, {text: 'Download', callback_data: 'resumeInPdf'}],
+                [{text: 'Back to top 🤔', callback_data: 'start'}],
             ]
         })
     },
     toStartOptions: {
         reply_markup: JSON.stringify({
             inline_keyboard: [
-                [{text: 'В начало 🤔', callback_data: 'start'}],
+                [{text: 'Back to top 🤔', callback_data: 'start'}],
             ]
         })
     },

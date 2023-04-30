@@ -9,10 +9,8 @@ const token = config.TOKEN;
 const reportsChannel = -1001755597137;
 const {
     newsExplorerText,
-    mestoText,
-    mestoReactText,
-    travellingText,
-    feinmanText,
+    blackWallText,
+    devhouseText,
     aboutText,
     tgBotText
 } = require('./texts');
@@ -33,27 +31,27 @@ const chats = {};
 const callback = (msg) => {
     const data =  msg.data;
     const chatId = msg.message.chat.id;
-    bot.sendMessage(chatId, data == chats[chatId] ? `Поздравляю, ты отгадал цифру ${chats[chatId]}!!!` : `Сожалею, но бот загадал другую цифру ${chats[chatId]}`, againOptions);
+    bot.sendMessage(chatId, data == chats[chatId] ? `Congratulations, you guessed the number ${chats[chatId]}!!!` : `I'm sorry, but the bot guessed number ${chats[chatId]}`, againOptions);
 }
 
 const startGame = async (chatId) => {
-    await bot.sendMessage(chatId, 'Сейчас я загадаю цифру от 0 до 10, твоя задача её угадать!');
+    await bot.sendMessage(chatId, "Now I'm going to guess a number from 0 to 10, your task is to guess it!");
     const randomNumber = Math.floor(Math.random() * 10);
     chats[chatId] = randomNumber;
     await bot.sendSticker(chatId, 'https://cdn.tlgrm.app/stickers/988/e5f/988e5f52-7165-3b74-b531-45389de62989/192/2.webp');
-    await bot.sendMessage(chatId, 'Я загадал, отгадывай!', gameOptions);
+    await bot.sendMessage(chatId, 'I guessed it, guess it.!', gameOptions);
     bot.once('callback_query', callback);
 }
 
 const sendFeedback = async (chatId) => {
     await bot.sendSticker(chatId, 'https://tlgrm.ru/_/stickers/940/db2/940db267-de3d-37ec-a2f7-4b832394eb3f/192/81.webp');
-    bot.sendMessage(chatId, `Нашёл баг? Поругать, похвалить проекты, просто дать фидбэк - всё принимается! Это анонимно!`);
-    bot.sendMessage(chatId, `Слушаю тебя!`);
+    bot.sendMessage(chatId, `Found a bug? Scold, praise projects, just give feedback - all accepted! This is anonymous!`);
+    bot.sendMessage(chatId, `Listening to you!`);
     bot.onText(/[a-zA-Zа-яА-Я0-9]+/, async msg => {
         const text = msg.text;
         const chatId = msg.chat.id; 
         await bot.sendMessage(reportsChannel, text);
-        bot.sendMessage(chatId, `Сообщение отправлено!`);
+        bot.sendMessage(chatId, `Message sent!`);
         bot.removeTextListener(/[a-zA-Zа-яА-Я0-9]+/);
         toBegining(chatId);
     })
@@ -65,7 +63,7 @@ const projectsMenu = async (chatId) => {
 
 const startAnswer = async (chatId) => {
     await bot.sendSticker(chatId, 'https://cdn.tlgrm.app/stickers/ac5/a4c/ac5a4c6a-d024-315e-8a8b-3c99843d3eef/192/8.webp');  
-    return bot.sendMessage(chatId, 'Добро пожаловать в телеграм бот веб-разработчика Антона Вайцеховского', mainOptions);
+    return bot.sendMessage(chatId, "Welcome to the web developer Anton Vaits's bot", mainOptions);
 }
 
 const toBegining = async (chatId) => {
@@ -73,33 +71,30 @@ const toBegining = async (chatId) => {
 }
 
 const resumeInPdf = async (chatId) => {
-    return bot.sendDocument(chatId, './Vaitsekhovskiy_A.pdf')
+    return bot.sendDocument(chatId, './Anton_Vaits_CV.pdf')
 }
 
 const resumeAnswer = async (chatId) => {
     await bot.sendSticker(chatId, 'https://chpic.su/_data/stickers/k/Katzz/Katzz_021.webp', resumeOptions)
+}   
+
+const blackWallFunction = async (chatId) => {
+    await bot.sendPhoto(chatId, './images/blwall1.png');
+    await bot.sendPhoto(chatId, './images/blwall2.png');
+    await bot.sendPhoto(chatId, './images/blwall3.png');
+    await bot.sendPhoto(chatId, './images/blwall4.png');
+    bot.sendMessage(chatId, blackWallText, toStartOptions);
+}
+const devhouseFunction = async (chatId) => {
+    await bot.sendPhoto(chatId, './images/devhouse1.png');
+    await bot.sendPhoto(chatId, './images/devhouse2.png');
+    await bot.sendPhoto(chatId, './images/devhouse3.png');
+    bot.sendMessage(chatId, devhouseText, toStartOptions);
 }
 
 const newsExplorerFunction = async (chatId) => {
     await bot.sendPhoto(chatId, './images/ne.png');
     bot.sendMessage(chatId, newsExplorerText, toStartOptions);
-}
-
-const mestoFunction = async (chatId) => {
-    await bot.sendPhoto(chatId, './images/m.png');
-    bot.sendMessage(chatId, mestoText, toStartOptions);
-}
-const mestoreactFunction = async (chatId) => {
-    await bot.sendPhoto(chatId, './images/m.png');
-    bot.sendMessage(chatId, mestoReactText, toStartOptions);
-}
-const travellingFunction = async (chatId) => {
-    await bot.sendPhoto(chatId, './images/tr.png');
-    bot.sendMessage(chatId, travellingText, toStartOptions);
-}
-const feinmanFunction = async (chatId) => {
-    await bot.sendPhoto(chatId, './images/fmn.png');
-    bot.sendMessage(chatId, feinmanText, toStartOptions);
 }
 
 const tgBotFunction = async (chatId) => {
@@ -113,12 +108,12 @@ const aboutFunction = async (chatId) => {
 
 const start = () => {
     bot.setMyCommands([
-        {command: '/start', description: 'Приветствие'},
-        {command: '/resume', description: 'Резюме'},
-        {command: '/projects', description: 'Проекты'},
-        {command: '/feedback', description: 'Обратная связь'},
-        {command: '/about', description: 'Обо мне'},
-        {command: '/game', description: 'Игра угадай цифру'},
+        {command: '/start', description: 'Greetings'},
+        {command: '/resume', description: 'CV'},
+        {command: '/projects', description: 'Projects'},
+        {command: '/feedback', description: 'Feedback'},
+        {command: '/about', description: 'About'},
+        {command: '/game', description: 'Guess the number game'},
     ])
         
     bot.onText(/[a-zA-Z0-9]+/, async msg => {
@@ -170,20 +165,14 @@ bot.on('callback_query', msg => {
         resumeInPdf(chatId);
         return startAnswer(chatId);        
     }
+    if (data === 'blackWall') {
+        return blackWallFunction(chatId);
+    }
+    if (data === 'devhouse') {
+        return devhouseFunction(chatId);
+    }
     if (data === 'newsExplorer') {
         return newsExplorerFunction(chatId);
-    }
-    if (data === 'mesto') {
-        return mestoFunction(chatId);
-    }
-    if (data === 'mestoReact') {
-        return mestoreactFunction(chatId);
-    }
-    if (data === 'traveling') {
-        return travellingFunction(chatId);
-    }
-    if (data === 'feinman') {
-        return feinmanFunction(chatId);
     }
     if (data === 'tgBot') {
         return tgBotFunction(chatId);
