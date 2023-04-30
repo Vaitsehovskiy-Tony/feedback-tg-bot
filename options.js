@@ -21,7 +21,7 @@ module.exports = {
     projectOptions: {
         reply_markup: JSON.stringify({
             inline_keyboard: [
-                [{text: 'Black Wall ⬛️', callback_data: 'blackWall'}],
+                [{text: 'Black Wall 🔲', callback_data: 'blackWall'}],
                 [{text: 'DevHouse 🏠', callback_data: 'devhouse'}],
                 [{text: 'News Explorer 🔍', callback_data: 'newsExplorer'}],
                 [{text: 'Feedback Bot 🧚🏽‍♀️', callback_data: 'tgBot'}],
