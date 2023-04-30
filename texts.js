@@ -8,7 +8,7 @@ module.exports = {
     Taking on the roles of project manager, tester, and developer simultaneously.
 
     The code is here: https://github.com/Vaitsehovskiy-Tony/black-wall`,
-    devhouseText: `amazing guys, super-professionals. They pumped up my industrial development skills and reminded me how cool it is to be in high tech =D
+    devhouseText: `Amazing guys, super-professionals. They pumped up my industrial development skills and reminded me how cool it is to be in high tech =D
     What I was doing there:
     CMS development for Norwegian marketplaces - SaaS    product type.
     Our team launched more than 50 different landing pages.

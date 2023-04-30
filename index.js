@@ -39,7 +39,7 @@ const startGame = async (chatId) => {
     const randomNumber = Math.floor(Math.random() * 10);
     chats[chatId] = randomNumber;
     await bot.sendSticker(chatId, 'https://cdn.tlgrm.app/stickers/988/e5f/988e5f52-7165-3b74-b531-45389de62989/192/2.webp');
-    await bot.sendMessage(chatId, 'I guessed it, guess it.!', gameOptions);
+    await bot.sendMessage(chatId, 'I guessed it, guess it!', gameOptions);
     bot.once('callback_query', callback);
 }
 
@@ -79,16 +79,16 @@ const resumeAnswer = async (chatId) => {
 }   
 
 const blackWallFunction = async (chatId) => {
-    await bot.sendPhoto(chatId, './images/blwall1.png');
-    await bot.sendPhoto(chatId, './images/blwall2.png');
-    await bot.sendPhoto(chatId, './images/blwall3.png');
-    await bot.sendPhoto(chatId, './images/blwall4.png');
+    await bot.sendPhoto(chatId, './images/blwall1.jpg');
+    await bot.sendPhoto(chatId, './images/blwall2.jpg');
+    await bot.sendPhoto(chatId, './images/blwall3.jpg');
+    await bot.sendPhoto(chatId, './images/blwall4.jpg');
     bot.sendMessage(chatId, blackWallText, toStartOptions);
 }
 const devhouseFunction = async (chatId) => {
-    await bot.sendPhoto(chatId, './images/devhouse1.png');
-    await bot.sendPhoto(chatId, './images/devhouse2.png');
-    await bot.sendPhoto(chatId, './images/devhouse3.png');
+    await bot.sendPhoto(chatId, './images/devhouse1.jpg');
+    await bot.sendPhoto(chatId, './images/devhouse2.jpeg');
+    await bot.sendPhoto(chatId, './images/devhouse3.jpeg');
     bot.sendMessage(chatId, devhouseText, toStartOptions);
 }
 
@@ -166,9 +166,13 @@ bot.on('callback_query', msg => {
         return startAnswer(chatId);        
     }
     if (data === 'blackWall') {
+        console.log(data)
+
         return blackWallFunction(chatId);
     }
     if (data === 'devhouse') {
+        console.log(data)
+
         return devhouseFunction(chatId);
     }
     if (data === 'newsExplorer') {
